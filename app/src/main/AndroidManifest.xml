@@ -12,6 +12,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <provider
+            android:name=".SecureFileSystemsProvider"
+            android:authorities="com.vandenbreemen.securefilesystemmanager.SecureFileSystemsProvider"
+            android:enabled="true"
+            android:exported="true"></provider>
+
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
