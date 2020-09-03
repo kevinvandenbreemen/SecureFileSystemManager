@@ -17,7 +17,14 @@ class SecureFileSystemsProvider : ContentProvider() {
         val SECURE_FILE_SYS_LIST_CODE = 1
     }
 
-    private val secureFileSystemInteractor = SecureFileSystemManagementInteractor(DefaultSecureFileSystemRepository(), context!!)
+    private val secureFileSystemInteractor : SecureFileSystemManagementInteractor by lazy {
+        context?.let {
+            return@lazy  SecureFileSystemManagementInteractor(DefaultSecureFileSystemRepository(), it)
+        } ?: run {
+            throw RuntimeException("Context not available!")
+        }
+
+    }
 
     private val uriMatcher = UriMatcher(UriMatcher.NO_MATCH)
     init {
@@ -42,7 +49,8 @@ class SecureFileSystemsProvider : ContentProvider() {
     }
 
     override fun onCreate(): Boolean {
-        TODO("Implement this to initialize your content provider on startup.")
+        println(secureFileSystemInteractor)
+        return true
     }
 
     override fun query(
