@@ -1,11 +1,18 @@
 package com.vandenbreemen.securefilesystemmanager.data
 
 import android.content.Context
+import android.os.Build
+import android.os.Environment
 import java.io.File
 
 class SecureFileSystemManagementInteractor(private val secureFileSystemRepository: SecureFileSystemRepository, private val context: Context) {
 
     private val supportedPaths: List<File> by lazy {
+
+        if(Build.VERSION.SDK_INT <= Build.VERSION_CODES.Q) {
+            return@lazy listOf(Environment.getExternalStorageDirectory())
+        }
+
         val contextPath = context.getExternalFilesDir(null)
 
         val externalPath = contextPath!!.absolutePath.replace(Regex("Android[/]data[/]${context.packageName}.*"), "")
