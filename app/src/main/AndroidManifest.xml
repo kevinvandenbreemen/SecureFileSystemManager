@@ -22,7 +22,6 @@
             android:authorities="com.vandenbreemen.securefilesystemmanager.SecureFileSystemsProvider"
             android:enabled="true"
             android:readPermission="com.vandenbreemen.securefilesystemmanager.READ"
-            android:multiprocess="true"
             android:exported="true" />
 
         <activity android:name=".MainActivity">
